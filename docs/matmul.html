@@ -964,21 +964,37 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Elementwise-Matrix-Multiplcation-(rendition-2!)">Elementwise Matrix Multiplcation (rendition 2!)<a class="anchor-link" href="#Elementwise-Matrix-Multiplcation-(rendition-2!)"> </a></h3>
+<h3 id="Elementwise-Matrix-Multiplication-(rendition-2!)">Elementwise Matrix Multiplication (rendition 2!)<a class="anchor-link" href="#Elementwise-Matrix-Multiplication-(rendition-2!)"> </a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_10">
+<li class="active">
+<a data-toggle="tab" href="#code_10">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_10">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_10" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">br</span><span class="p">,</span><span class="n">bc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">ac</span><span class="o">==</span><span class="n">br</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">bc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bc</span><span class="p">):</span>
+            <span class="c1"># Any trailing ",:" can be removed</span>
+            <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_10" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
@@ -993,32 +1009,28 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </pre></div>
 </div>
 </div>
+<dl id="content_10">
+<dt id="c[i,j] = (a[i,:] * b[:,j]).sum()">
+<pre><span class="n">c[i,j] = (a[i,:] * b[:,j]).sum()</span></pre>
+</dt>
+<dd>We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i -\ end! (Or the entirety of that axis)</dd>
+<dt id="a[i,:]">
+<pre><span class="n">a[i,:]</span></pre>
+</dt>
+<dd>We select all of row <code>i</code></dd>
+<dt id="b[:,j]">
+<pre><span class="n">b[:,j]</span></pre>
+</dt>
+<dd>And we select all of column <code>j</code>.</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"c[i,j] = (a[i,:] * b[:,j]).sum()"</span><span class="p">:</span> <span class="s2">"We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i -\&gt; end! (Or the entirety of that axis)"</span><span class="p">,</span>
-    <span class="s2">"a[i,:]"</span><span class="p">:</span> <span class="s2">"We select all of row `i`"</span><span class="p">,</span>
-    <span class="s2">"b[:,j]"</span><span class="p">:</span> <span class="s2">"And we select all of column `j`."</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -1167,7 +1179,7 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Broadcast-a-vector-to-a-matrix">Broadcast a vector to a matrix<a class="anchor-link" href="#Broadcast-a-vector-to-a-matrix"> </a></h3>
+<h4 id="Broadcast-a-vector-to-a-matrix">Broadcast a vector to a matrix<a class="anchor-link" href="#Broadcast-a-vector-to-a-matrix"> </a></h4>
 </div>
 </div>
 </div>
@@ -1273,46 +1285,43 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_11">
+<li class="active">
+<a data-toggle="tab" href="#code_11">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_11">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_11" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_11" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_11">
+<dt id=".expand_as">
+<pre><span class="n">.expand_as</span></pre>
+</dt>
+<dd>Shows what a tensor (d) would look like if it were broadcast to m</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">".expand_as"</span><span class="p">:</span><span class="s2">"Shows what a tensor (d) would look like if it were broadcast to m"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -1405,57 +1414,43 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_12">
+<li class="active">
+<a data-toggle="tab" href="#code_12">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_12">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_12" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_12" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor([[10.],
-        [20.],
-        [30.]])</pre>
-</div>
-</div>
-</div>
+<dl id="content_12">
+<dt id=".unsqueeze(1)">
+<pre><span class="n">.unsqueeze(1)</span></pre>
+</dt>
+<dd>Adds an additional dimension of 1 to wherever we ask for one</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">".unsqueeze(1)"</span><span class="p">:</span><span class="s2">"Adds an additional dimension of 1 to wherever we ask for one"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -1628,57 +1623,51 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_13">
+<li class="active">
+<a data-toggle="tab" href="#code_13">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_13">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_13" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_13" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>(torch.Size([3]), torch.Size([1, 3]), torch.Size([3, 1]))</pre>
-</div>
-</div>
-</div>
+<dl id="content_13">
+<dt id="d[None,:], d[:,None]">
+<pre><span class="n">d[None,:], d[:,None]</span></pre>
+</dt>
+<dd>PyTorch and numpy will use this notation to squeeze in a dimension at index <code>None</code>, equivalent to unsqueeze()</dd>
+<dt id="d[None,:]">
+<pre><span class="n">d[None,:]</span></pre>
+</dt>
+<dd>This is equivalent to <code>d.unsqueeze(0)</code></dd>
+<dt id="d[:,None]">
+<pre><span class="n">d[:,None]</span></pre>
+</dt>
+<dd>This is equivalent to <code>d.unsqueeze(1)</code></dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"d[None,:], d[:,None]"</span><span class="p">:</span> <span class="s2">"PyTorch and numpy will use this notation to squeeze in a dimension at index `None`, equivalent to unsqueeze()"</span><span class="p">,</span>
-    <span class="s2">"d[None,:]"</span><span class="p">:</span> <span class="s2">"This is equivalent to `d.unsqueeze(0)`"</span><span class="p">,</span>
-    <span class="s2">"d[:,None]"</span><span class="p">:</span> <span class="s2">"This is equivalent to `d.unsqueeze(1)`"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -1754,58 +1743,47 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_14">
+<li class="active">
+<a data-toggle="tab" href="#code_14">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_14">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_14" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_14" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor([[10., 10., 10.],
-        [20., 20., 20.],
-        [30., 30., 30.]])</pre>
-</div>
-</div>
-</div>
+<dl id="content_14">
+<dt id="d[:,None]">
+<pre><span class="n">d[:,None]</span></pre>
+</dt>
+<dd>Adds a dimension on the last axis, turning <code>d</code> into [10],[20],[30]</dd>
+<dt id=".expand_as(m)">
+<pre><span class="n">.expand_as(m)</span></pre>
+</dt>
+<dd>When we expand now, the result will be a lateral expansion rather than vertical</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"d[:,None]"</span><span class="p">:</span> <span class="s2">"Adds a dimension on the last axis, turning `d` into [10],[20],[30]"</span><span class="p">,</span>
-    <span class="s2">".expand_as(m)"</span><span class="p">:</span> <span class="s2">"When we expand now, the result will be a lateral expansion rather than vertical"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -1870,17 +1848,37 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_15">
+<li class="active">
+<a data-toggle="tab" href="#code_15">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_15">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_15" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">br</span><span class="p">,</span><span class="n">bc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">ac</span><span class="o">==</span><span class="n">br</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">bc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+        <span class="c1"># c[i,j] = (a[i,:] * b[:,j]).sum() previous</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># This is equivalent to c[i,:]</span>
+        <span class="c1"># Rewritten in None form:</span>
+        <span class="c1">#c[i] = (a[i][:,None] * b).sum(dim=0)</span>
+        <span class="c1"># Rewritten again to avoid second index altogether:</span>
+        <span class="c1">#c[i] = (a[i,:,None] * b).sum(dim=0)</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_15" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
@@ -1899,32 +1897,28 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </pre></div>
 </div>
 </div>
+<dl id="content_15">
+<dt id="a[i].unsqueeze(-1)">
+<pre><span class="n">a[i].unsqueeze(-1)</span></pre>
+</dt>
+<dd>This takes <code>a</code> at <code>i</code> and expands its last dimension by 1, and now it's a rank 2 tensor</dd>
+<dt id="* b">
+<pre><span class="n">* b</span></pre>
+</dt>
+<dd>This newly reshaped array can then be multiplied by b properly without issue</dd>
+<dt id=".sum(dim=0)">
+<pre><span class="n">.sum(dim=0)</span></pre>
+</dt>
+<dd>And finally we can take the sum of that result, doing so on the first dimension</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"a[i].unsqueeze(-1)"</span><span class="p">:</span> <span class="s2">"This takes `a` at `i` and expands its last dimension by 1, and now it's a rank 2 tensor"</span><span class="p">,</span>
-    <span class="s2">"* b"</span><span class="p">:</span> <span class="s2">"This newly reshaped array can then be multiplied by b properly without issue"</span><span class="p">,</span>
-    <span class="s2">".sum(dim=0)"</span><span class="p">:</span> <span class="s2">"And finally we can take the sum of that result, doing so on the first dimension"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
