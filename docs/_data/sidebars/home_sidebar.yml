@@ -11,7 +11,7 @@ entries:
       url: /
     - output: web,pdf
       title: Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication
-      url: core.html
+      url: matmul.html
     - output: web,pdf
       title: Insert title here
       url: template.html
