@@ -87,32 +87,45 @@ nb_path: "nbs/core.ipynb"
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_0">
+<li class="active">
+<a data-toggle="tab" href="#code_0">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_0">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_0" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">"https://figshare.com/ndownloader/files/25635053"</span>
+<span class="n">fd</span> <span class="o">=</span> <span class="n">FastDownload</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="s2">"~/.fastai"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_0" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">url</span> <span class="o">=</span> <span class="s2">"https://figshare.com/ndownloader/files/25635053"</span>
 <span class="n">fd</span> <span class="o">=</span> <span class="n">FastDownload</span><span class="p">(</span><span class="n">base</span><span class="o">=</span><span class="s2">"~/.fastai"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>Path('/home/zach/.fastai/archive/25635053')</pre>
-</div>
-</div>
-</div>
+<dl id="content_0">
+<dt id="https://figshare.com/ndownloader/files/25635053">
+<pre><span class="n">https://figshare.com/ndownloader/files/25635053</span></pre>
+</dt>
+<dd>deeplearning.net is no longer up, so we use a version of Yann LeCun's dataset</dd>
+<dt id="FastDownload(base='~/.fastai')">
+<pre><span class="n">FastDownload(base='~/.fastai')</span></pre>
+</dt>
+<dd>We utilize fastdownload's <code>FastDownload</code> class to handle the downloading of the data. <code>from fastai import datasets</code> is no longer a thing.</dd>
+<dt id="fd.download(url)">
+<pre><span class="n">fd.download(url)</span></pre>
+</dt>
+<dd>Perform the actual downloading</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
@@ -140,28 +153,10 @@ nb_path: "nbs/core.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"https://figshare.com/ndownloader/files/25635053"</span><span class="p">:</span> <span class="s2">"deeplearning.net is no longer up, so we use a version of Yann LeCun's dataset"</span><span class="p">,</span>
-    <span class="s2">"FastDownload(base='~/.fastai')"</span><span class="p">:</span> <span class="s2">"We utilize fastdownload's `FastDownload` class to handle the downloading of the data. `from fastai import datasets` is no longer a thing."</span><span class="p">,</span>
-    <span class="s2">"fd.download(url)"</span><span class="p">:</span> <span class="s2">"Perform the actual downloading"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -185,23 +180,41 @@ nb_path: "nbs/core.ipynb"
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_1">
+<li class="active">
+<a data-toggle="tab" href="#code_1">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_1">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_1" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">x_valid</span><span class="p">,</span><span class="n">y_valid</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">x_valid</span><span class="p">,</span><span class="n">y_valid</span><span class="p">))</span>
+<span class="n">n</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_1" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">x_valid</span><span class="p">,</span><span class="n">y_valid</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="p">(</span><span class="n">x_train</span><span class="p">,</span><span class="n">y_train</span><span class="p">,</span><span class="n">x_valid</span><span class="p">,</span><span class="n">y_valid</span><span class="p">))</span>
 <span class="n">n</span><span class="p">,</span><span class="n">c</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_1">
+<dt id="map(tensor, (x_train,y_train,x_valid,y_valid))">
+<pre><span class="n">map(tensor, (x_train,y_train,x_valid,y_valid))</span></pre>
+</dt>
+<dd>Applys <code>torch.tensor</code> across the four arrays, converting them all into tensors</dd>
+<dt id="n,c = x_train.shape">
+<pre><span class="n">n,c = x_train.shape</span></pre>
+</dt>
+<dd><code>n</code> = the number of rows in the training set, <code>c</code> = the number of columns in the training set</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
@@ -240,40 +253,33 @@ nb_path: "nbs/core.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"map(tensor, (x_train,y_train,x_valid,y_valid))"</span><span class="p">:</span> <span class="s2">"Applys `torch.tensor` across the four arrays, converting them all into tensors"</span><span class="p">,</span>
-    <span class="s2">"n,c = x_train.shape"</span><span class="p">:</span> <span class="s2">"`n` = the number of rows in the training set, `c` = the number of columns in the training set"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_2">
+<li class="active">
+<a data-toggle="tab" href="#code_2">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_2">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_2" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">n</span><span class="o">==</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">50000</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">test_eq</span><span class="p">(</span><span class="n">y_train</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_2" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">n</span><span class="o">==</span><span class="n">y_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">==</span><span class="mi">50000</span>
 <span class="n">test_eq</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="mi">28</span><span class="p">)</span>
@@ -282,46 +288,54 @@ nb_path: "nbs/core.ipynb"
 </pre></div>
 </div>
 </div>
+<dl id="content_2">
+<dt id="assert n==y_train.shape[0]==50000">
+<pre><span class="n">assert n==y_train.shape[0]==50000</span></pre>
+</dt>
+<dd>Verify there are 50,000 items in the dataset</dd>
+<dt id="test_eq(c, 28*28)">
+<pre><span class="n">test_eq(c, 28*28)</span></pre>
+</dt>
+<dd>Verify that each item is 28x28 numbers</dd>
+<dt id="test_eq(y_train.min(),0)">
+<pre><span class="n">test_eq(y_train.min(),0)</span></pre>
+</dt>
+<dd>Verify the lowest class in the y labels is 0</dd>
+<dt id="test_eq(y_train.max(),9)">
+<pre><span class="n">test_eq(y_train.max(),9)</span></pre>
+</dt>
+<dd>Verify the highest class in the y labels is 9</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_3">
+<li class="active">
+<a data-toggle="tab" href="#code_3">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_3">Code + Explanation</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_3" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"assert n==y_train.shape[0]==50000"</span><span class="p">:</span> <span class="s2">"Verify there are 50,000 items in the dataset"</span><span class="p">,</span>
-    <span class="s2">"test_eq(c, 28*28)"</span><span class="p">:</span> <span class="s2">"Verify that each item is 28x28 numbers"</span><span class="p">,</span>
-    <span class="s2">"test_eq(y_train.min(),0)"</span><span class="p">:</span> <span class="s2">"Verify the lowest class in the y labels is 0"</span><span class="p">,</span>
-    <span class="s2">"test_eq(y_train.max(),9)"</span><span class="p">:</span> <span class="s2">"Verify the highest class in the y labels is 9"</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"image.cmap"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'gray'</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">assert</span> <span class="n">img</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="s1">'torch.FloatTensor'</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explanation_3" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">mpl</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s2">"image.cmap"</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'gray'</span>
 <span class="n">img</span> <span class="o">=</span> <span class="n">x_train</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -329,83 +343,63 @@ nb_path: "nbs/core.ipynb"
 </pre></div>
 </div>
 </div>
+<dl id="content_3">
+<dt id="img = x_train[0]">
+<pre><span class="n">img = x_train[0]</span></pre>
+</dt>
+<dd>Get one set of data from the dataset</dd>
+<dt id="img.view(28,28).type()">
+<pre><span class="n">img.view(28,28).type()</span></pre>
+</dt>
+<dd>Check after viewing it as a 28,28 (more on this next) that the type is still a FloatTensor</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_4">
+<li class="active">
+<a data-toggle="tab" href="#code_4">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_4">Code + Explanation</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_4" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"img = x_train[0]"</span><span class="p">:</span> <span class="s2">"Get one set of data from the dataset"</span><span class="p">,</span>
-    <span class="s2">"img.view(28,28).type()"</span><span class="p">:</span> <span class="s2">"Check after viewing it as a 28,28 (more on this next) that the type is still a FloatTensor"</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)));</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explanation_4" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">view</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span><span class="mi">28</span><span class="p">)));</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_png output_subarea">
-<img src="data:image/png;base64,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gQMHPM+sWrXK80ysDh486Hnmrrvu8jzT0dHheeamm27yPCNJjz32WExzgBe8AgIAmCBAAAATBAgAYIIAAQBMECAAgAkCBAAwQYAAACYIEADABAECAJggQAAAEwQIAGCCAAEATPicc856E+cLh8MKBALW20CCZGRkeJ5pb2/3PLNmzRrPM5L04IMPep751re+5Xlm48aNnmeAgSYUCl30v3leAQEATBAgAIAJzwHavXu35s6dq/z8fPl8Pm3dujXqfuecnn76aeXl5WnYsGEqLi7W4cOH47VfAECK8Bygjo4OTZkyRatXr+71/pUrV2rVqlV69dVXtXfvXg0fPlwlJSXq7Oy87M0CAFKH59+IWlpaqtLS0l7vc87p5Zdf1g9+8APdfffdkqT169crNzdXW7du1b333nt5uwUApIy4/gyooaFBLS0tKi4ujtwWCARUWFio2traXme6uroUDoejFgAg9cU1QC0tLZKk3NzcqNtzc3Mj931SZWWlAoFAZI0aNSqeWwIAJCnzd8FVVFQoFApFVlNTk/WWAAD9IK4BCgaDkqTW1tao21tbWyP3fZLf71dGRkbUAgCkvrgGqKCgQMFgUFVVVZHbwuGw9u7dq6Kiong+FABggPP8LriTJ0+qvr4+8nFDQ4MOHjyorKwsjR49WkuWLNGPf/xj3XDDDSooKNBTTz2l/Px8zZs3L577BgAMcJ4DtG/fPt15552Rj5ctWyZJWrRokdatW6cnnnhCHR0devjhh9XW1qbbbrtNO3fu1FVXXRW/XQMABjwuRoqU9MILL8Q09/H/UHlRU1Pjeeb8v6rwafX09HieASxxMVIAQFIiQAAAEwQIAGCCAAEATBAgAIAJAgQAMEGAAAAmCBAAwAQBAgCYIEAAABMECABgggABAEwQIACACa6GjZQ0fPjwmOa2b9/ueeaOO+7wPFNaWup55s9//rPnGcASV8MGACQlAgQAMEGAAAAmCBAAwAQBAgCYIEAAABMECABgggABAEwQIACACQIEADBBgAAAJggQAMAEFyMFzjNu3DjPM++9957nmba2Ns8zb7/9tueZffv2eZ6RpNWrV3ueSbIvJUgCXIwUAJCUCBAAwAQBAgCYIEAAABMECABgggABAEwQIACACQIEADBBgAAAJggQAMAEAQIAmCBAAAATXIwUuEzz58/3PLN27VrPM+np6Z5n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mDFjlJ+fr0OHDun73/++6urq9Pvf/95wt9GSPkD4f6WlpZE/T548WYWFhRozZozeeOMNPfjgg4Y7QzK49957I3+++eabNXnyZI0bN07V1dWaNWuW4c4So6ysTO+///4V8XPQi+nrPDz88MORP998883Ky8vTrFmzdOTIEY0bN66/t9mrpP8WXHZ2tgYPHnzBu1haW1sVDAaNdpUcMjMzdeONN6q+vt56K2Y+fg7w/LjQ2LFjlZ2dnZLPj/Lycu3YsUNvv/121K9vCQaDOnPmjNra2qKOT9XnQ1/noTeFhYWSlFTPh6QPUFpamqZOnaqqqqrIbT09PaqqqlJRUZHhzuydPHlSR44cUV5envVWzBQUFCgYDEY9P8LhsPbu3XvFPz+OHj2qEydOpNTzwzmn8vJybdmyRbt27VJBQUHU/VOnTtXQoUOjng91dXVqbGxMqefDpc5Dbw4ePChJyfV8sH4XxKexadMm5/f73bp169wHH3zgHn74YZeZmelaWlqst9avvve977nq6mrX0NDg/vrXv7ri4mKXnZ3tjh8/br21hGpvb3cHDhxwBw4ccJLcSy+95A4cOOD+9a9/Oeece/75511mZqbbtm2bO3TokLv77rtdQUGBO336tPHO4+ti56G9vd09/vjjrra21jU0NLi33nrLff7zn3c33HCD6+zstN563DzyyCMuEAi46upq19zcHFmnTp2KHLN48WI3evRot2vXLrdv3z5XVFTkioqKDHcdf5c6D/X19e6HP/yh27dvn2toaHDbtm1zY8eOdTNmzDDeebQBESDnnPvFL37hRo8e7dLS0tz06dPdnj17rLfU7+655x6Xl5fn0tLS3HXXXefuueceV19fb72thHv77bedpAvWokWLnHPn3or91FNPudzcXOf3+92sWbNcXV2d7aYT4GLn4dSpU2727Nnu2muvdUOHDnVjxoxxDz30UMr9T1pv//yS3Nq1ayPHnD592n33u991n/nMZ9zVV1/t5s+f75qbm+02nQCXOg+NjY1uxowZLisry/n9fjd+/Hi3fPlyFwqFbDf+Cfw6BgCAiaT/GRAAIDURIACACQIEADBBgAAAJggQAMAEAQIAmCBAAAATBAgAYIIAAQBMECAAgAkCBAAwQYAAACb+Dwuo74MxItlsAAAAAElFTkSuQmCC
-"/>
-</div>
-</div>
-</div>
+<dl id="content_4">
+<dt id="img.view((28,28))">
+<pre><span class="n">img.view((28,28))</span></pre>
+</dt>
+<dd>Reshape our 168 long vector into a 28x28 matrix</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"img.view((28,28))"</span><span class="p">:</span> <span class="s2">"Reshape our 168 long vector into a 28x28 matrix"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -430,48 +424,49 @@ nb_path: "nbs/core.ipynb"
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_5">
+<li class="active">
+<a data-toggle="tab" href="#code_5">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_5">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_5" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">bias</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_5" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">784</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">bias</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_5">
+<dt id="torch.randn(784,10)">
+<pre><span class="n">torch.randn(784,10)</span></pre>
+</dt>
+<dd>This operates as <code>a</code>, a 784x10 matrix where 784==length of the array, 10==num going out</dd>
+<dt id="torch.zeros(10)">
+<pre><span class="n">torch.zeros(10)</span></pre>
+</dt>
+<dd>The bias will just start as 10 zeros</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"torch.randn(784,10)"</span><span class="p">:</span> <span class="s2">"This operates as `a`, a 784x10 matrix where 784==length of the array, 10==num going out"</span><span class="p">,</span>
-    <span class="s2">"torch.zeros(10)"</span><span class="p">:</span> <span class="s2">"The bias will just start as 10 zeros"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -481,17 +476,33 @@ nb_path: "nbs/core.ipynb"
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_6">
+<li class="active">
+<a data-toggle="tab" href="#code_6">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_6">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_6" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">br</span><span class="p">,</span><span class="n">bc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">ac</span><span class="o">==</span><span class="n">br</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">bc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bc</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ac</span><span class="p">):</span> <span class="c1"># or br</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_6" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
@@ -506,80 +517,89 @@ nb_path: "nbs/core.ipynb"
 </pre></div>
 </div>
 </div>
+<dl id="content_6">
+<dt id="(a,b)">
+<pre><span class="n">(a,b)</span></pre>
+</dt>
+<dd><code>a</code> and <code>b</code> are two matricies which should be multiplied</dd>
+<dt id="assert ac==br">
+<pre><span class="n">assert ac==br</span></pre>
+</dt>
+<dd>Matrix multiplication cannot occur unless the number of columns in <code>a</code> aligns with the number of rows in <code>b</code></dd>
+<dt id="c">
+<pre><span class="n">c</span></pre>
+</dt>
+<dd><code>c</code> is the resulting matrix, which has a shape of <code>a</code>'s rows and <code>b</code>'s columns</dd>
+<dt id="for i in range(ar):">
+<pre><span class="n">for i in range(ar):</span></pre>
+</dt>
+<dd>Loop of matrix B as a whole scrolling down matrix A *sideways*, imagine going row by row like a curtain coming down slowly</dd>
+<dt id="for j in range(bc):">
+<pre><span class="n">for j in range(bc):</span></pre>
+</dt>
+<dd>Loop of each column in matrix B at each row in matrix A</dd>
+<dt id="for k in range(ac):">
+<pre><span class="n">for k in range(ac):</span></pre>
+</dt>
+<dd>The actual loop of multiplying and adding (matrix multiplication)</dd>
+<dt id="c[i,j] += a[i,k] * b[k,j]">
+<pre><span class="n">c[i,j] += a[i,k] * b[k,j]</span></pre>
+</dt>
+<dd>The actual multiplication being performed</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_7">
+<li class="active">
+<a data-toggle="tab" href="#code_7">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_7">Code + Explanation</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_7" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"(a,b)"</span><span class="p">:</span> <span class="s2">"`a` and `b` are two matricies which should be multiplied"</span><span class="p">,</span>
-    <span class="s2">"assert ac==br"</span><span class="p">:</span> <span class="s2">"Matrix multiplication cannot occur unless the number of columns in `a` aligns with the number of rows in `b`"</span><span class="p">,</span>
-    <span class="s2">"c"</span><span class="p">:</span><span class="s2">"`c` is the resulting matrix, which has a shape of `a`'s rows and `b`'s columns"</span><span class="p">,</span>
-    <span class="s2">"for i in range(ar):"</span><span class="p">:</span> <span class="s2">"Loop of matrix B as a whole scrolling down matrix A *sideways*, imagine going row by row like a curtain coming down slowly"</span><span class="p">,</span>
-    <span class="s2">"for j in range(bc):"</span><span class="p">:</span> <span class="s2">"Loop of each column in matrix B at each row in matrix A"</span><span class="p">,</span>
-    <span class="s2">"for k in range(ac):"</span><span class="p">:</span> <span class="s2">"The actual loop of multiplying and adding (matrix multiplication)"</span><span class="p">,</span>
-    <span class="s2">"c[i,j] += a[i,k] * b[k,j]"</span><span class="p">:</span> <span class="s2">"The actual multiplication being performed"</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">x_valid</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">weights</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explanation_7" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">x_valid</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="n">weights</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_7">
+<dt id="m1">
+<pre><span class="n">m1</span></pre>
+</dt>
+<dd>Five rows of the validation set</dd>
+<dt id="m2">
+<pre><span class="n">m2</span></pre>
+</dt>
+<dd>Weight matrix</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"m1"</span><span class="p">:</span> <span class="s2">"Five rows of the validation set"</span><span class="p">,</span>
-    <span class="s2">"m2"</span><span class="p">:</span> <span class="s2">"Weight matrix"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -755,48 +775,49 @@ Wall time: 391 ms
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_8">
+<li class="active">
+<a data-toggle="tab" href="#code_8">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_8">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_8" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_8" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_8">
+<dt id="c = (a  b)">
+<pre><span class="n">c = (a  b)</span></pre>
+</dt>
+<dd>We performed <code>c[0] = a[0] b[0]</code>, <code>c[1] = a[1]  b[1]</code>, ...</dd>
+<dt id="c">
+<pre><span class="n">c</span></pre>
+</dt>
+<dd>This becomes a boolean array of <code>[False, True, True]</code>, having an average of 2/3's</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"c = (a &lt; b)"</span><span class="p">:</span> <span class="s2">"We performed `c[0] = a[0]&lt; b[0]`, `c[1] = a[1] &lt; b[1]`, ..."</span><span class="p">,</span>
-    <span class="s2">"c"</span><span class="p">:</span><span class="s2">"This becomes a boolean array of `[False, True, True]`, having an average of 2/3's"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
