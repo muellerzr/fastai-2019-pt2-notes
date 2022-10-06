@@ -640,8 +640,8 @@ nb_path: "nbs/core.ipynb"
 <div class="output">
 <div class="output_area">
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>CPU times: user 395 ms, sys: 0 ns, total: 395 ms
-Wall time: 391 ms
+<pre>CPU times: user 446 ms, sys: 1.88 ms, total: 448 ms
+Wall time: 445 ms
 </pre>
 </div>
 </div>
@@ -962,4 +962,1036 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Elementwise-Matrix-Multiplcation-(rendition-2!)">Elementwise Matrix Multiplcation (rendition 2!)<a class="anchor-link" href="#Elementwise-Matrix-Multiplcation-(rendition-2!)"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">br</span><span class="p">,</span><span class="n">bc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">ac</span><span class="o">==</span><span class="n">br</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">bc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bc</span><span class="p">):</span>
+            <span class="c1"># Any trailing ",:" can be removed</span>
+            <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">"c[i,j] = (a[i,:] * b[:,j]).sum()"</span><span class="p">:</span> <span class="s2">"We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i -&gt; end! (Or the entirety of that axis)"</span><span class="p">,</span>
+    <span class="s2">"a[i,:]"</span><span class="p">:</span> <span class="s2">"We select all of row `i`"</span><span class="p">,</span>
+    <span class="s2">"b[:,j]"</span><span class="p">:</span> <span class="s2">"And we select all of column `j`."</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In numpy and PyTorch it goes 🎵 row by column 🎵</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 _=matmul(m1,m2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>727 µs ± 380 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="mi">445</span><span class="o">/</span><span class="mf">.727</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>612.1045392022008</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are now 600x faster by removing a single loop by running it in c</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_close</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">matmul</span><span class="p">(</span><span class="n">m1</span><span class="p">,</span><span class="n">m2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Broadcasting">Broadcasting<a class="anchor-link" href="#Broadcasting"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we need to get rid of the second-most inner loop through <em>broadcasting</em>.</p>
+<p>Get rid of all for loops and replace with implicit broadcasted loops</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Broadcasting-with-a-scalar">Broadcasting with a scalar<a class="anchor-link" href="#Broadcasting-with-a-scalar"> </a></h4>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([10.,  6., -4.])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([ True,  True, False])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We just <em>broadcast</em> <code>a &gt; 0</code>. Also known as, the float turns into <code>[0,0,0]</code> and an element-wise operation is performed, and is done at either C or CUDA speed depending on the device</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Broadcast-a-vector-to-a-matrix">Broadcast a vector to a matrix<a class="anchor-link" href="#Broadcast-a-vector-to-a-matrix"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">10.</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">]);</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([10., 20., 30.])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1., 2., 3.],
+        [4., 5., 6.],
+        [7., 8., 9.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">c</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([3, 3]), torch.Size([]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">+</span> <span class="n">d</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[11., 22., 33.],
+        [14., 25., 36.],
+        [17., 28., 39.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By the rules we have so far, we'd expect this to not actually do anything. But instead it broadcast the tensor <em>horizontally</em> row by row adding the vector to the matrix</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">d</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">".expand_as"</span><span class="p">:</span><span class="s2">"Shows what a tensor (d) would look like if it were broadcast to m"</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10., 20., 30.],
+        [10., 20., 30.],
+        [10., 20., 30.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">storage</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre> 10.0
+ 20.0
+ 30.0
+[torch.storage._TypedStorage(dtype=torch.float32, device=cpu) of size 3]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This shows us that it's only storing one copy of <code>t</code>, and not a 3x3 copy of <code>t</code></p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t</span><span class="o">.</span><span class="n">stride</span><span class="p">(),</span> <span class="n">t</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>((0, 1), torch.Size([3, 3]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How to read this:</p>
+<p>When going row by row, it should take <em>zero</em> steps through the memory/storage. And when going column by column, it should take <strong>one</strong> step.</p>
+<p>This in turn is how it repeats 10,20,30 for every single row.</p>
+<p>We can create tensors that behave like tensors much bigger than what they are.</p>
+<p>What if we wanted to take a column instead of a row? In other words, a rank 2 tensor of shape (3,1)</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10.],
+        [20.],
+        [30.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">".unsqueeze(1)"</span><span class="p">:</span><span class="s2">"Adds an additional dimension of 1 to wherever we ask for one"</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>torch.Size([3])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10., 20., 30.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>d</code> would have a shape of <code>(1,3)</code> which changed from just <code>(3)</code> by adding a dimension at position <code>0</code>.</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10.],
+        [20.],
+        [30.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>d</code> would have a shape of <code>(3,1)</code> which changed from just <code>(3)</code> by adding a dimension at position <code>1</code>.</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_223403/68533425.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>d<span class="ansi-blue-fg">.</span>unsqueeze<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">IndexError</span>: Dimension out of range (expected to be in range of [-2, 1], but got 2)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This fails because we only have a 1d tensor not a 2d tensor. E.g.:</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]])</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[[1],
+         [2],
+         [3]],
+
+        [[4],
+         [5],
+         [6]]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([3]), torch.Size([1, 3]), torch.Size([3, 1]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([3]), torch.Size([1, 3]), torch.Size([3, 1]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">"d[None,:], d[:,None]"</span><span class="p">:</span> <span class="s2">"PyTorch and numpy will use this notation to squeeze in a dimension at index `None`, equivalent to unsqueeze()"</span><span class="p">,</span>
+    <span class="s2">"d[None,:]"</span><span class="p">:</span> <span class="s2">"This is equivalent to `d.unsqueeze(0)`"</span><span class="p">,</span>
+    <span class="s2">"d[:,None]"</span><span class="p">:</span> <span class="s2">"This is equivalent to `d.unsqueeze(1)`"</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([3]), torch.Size([1, 3]), torch.Size([3, 1]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This also works with <em>multiple</em> axes:</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span><span class="kc">None</span><span class="p">,:]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>torch.Size([1, 1, 3])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can always skip trailing :'s, and '...' means 'all preceding dimensions':</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="o">...</span><span class="p">,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(torch.Size([1, 3]), torch.Size([3, 1]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10., 10., 10.],
+        [20., 20., 20.],
+        [30., 30., 30.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">"d[:,None]"</span><span class="p">:</span> <span class="s2">"Adds a dimension on the last axis, turning `d` into [10],[20],[30]"</span><span class="p">,</span>
+    <span class="s2">".expand_as(m)"</span><span class="p">:</span> <span class="s2">"When we expand now, the result will be a lateral expansion rather than vertical"</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">expand_as</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[10., 10., 10.],
+        [20., 20., 20.],
+        [30., 30., 30.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">+</span> <span class="n">d</span><span class="p">[:,</span><span class="kc">None</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[11., 12., 13.],
+        [24., 25., 26.],
+        [37., 38., 39.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>From here, we visualize this in excel. Follow the timestamp <a href="https://youtu.be/4u8FxNEDUeg?list=PLfYUBJiXbdtTIdtE1U8qgyxo4Jy2Y91uj&amp;t=3626">here</a></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="matmul-with-broadcasting">matmul with broadcasting<a class="anchor-link" href="#matmul-with-broadcasting"> </a></h3><p>With this information now, we can use this to get rid of the loop:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">br</span><span class="p">,</span><span class="n">bc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">ac</span><span class="o">==</span><span class="n">br</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">bc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+        <span class="c1"># c[i,j] = (a[i,:] * b[:,j]).sum() previous</span>
+        <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">b</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># This is equivalent to c[i,:]</span>
+        <span class="c1"># Rewritten in None form:</span>
+        <span class="c1">#c[i] = (a[i][:,None] * b).sum(dim=0)</span>
+        <span class="c1"># Rewritten again to avoid second index altogether:</span>
+        <span class="c1">#c[i] = (a[i,:,None] * b).sum(dim=0)</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">"a[i].unsqueeze(-1)"</span><span class="p">:</span> <span class="s2">"This takes `a` at `i` and expands its last dimension by 1"</span><span class="p">,</span>
+    <span class="s2">"* b"</span><span class="p">:</span> <span class="s2">"This newly reshaped array can then be multiplied by b properly without issue"</span><span class="p">,</span>
+    <span class="s2">".sum(dim=0)"</span><span class="p">:</span> <span class="s2">"And finally we can take the sum of that result, grouping it by the first dimension"</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">assert</span> <span class="n">m1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">m1</span><span class="p">[</span><span class="mi">0</span><span class="p">][:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">m1</span><span class="p">[</span><span class="mi">0</span><span class="p">,:,</span><span class="kc">None</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 _=matmul(m1,m2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>157 µs ± 66.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="mi">445</span><span class="o">/</span><span class="mf">.157</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>2834.394904458599</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We are now more than 2000x faster!</p>
+</div>
+</div>
+</div>
 </div>
