@@ -888,14 +888,6 @@ Wall time: 391 ms
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>{% raw %}
-$$\|A\|_F \equiv \sqrt{\sum_{i=1}^m \sum_{j=1}^n\left|a_{i j}\right|^2}$$
-{% endraw %}</p>
-</div>
-</div>
-</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -925,58 +917,53 @@ $$\|A\|_F \equiv \sqrt{\sum_{i=1}^m \sum_{j=1}^n\left|a_{i j}\right|^2}$$
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_9">
+<li class="active">
+<a data-toggle="tab" href="#code_9">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_9">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_9" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="c1"># For readability</span>
+<span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_9" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">clone</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="c1"># For readability</span>
 <span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor(16.8819)</pre>
-</div>
-</div>
-</div>
+<dl id="content_9">
+<dt id="m*n">
+<pre><span class="n">m*n</span></pre>
+</dt>
+<dd>This correlates to $$\left|a_{i j}ight|$$</dd>
+<dt id=".sum()">
+<pre><span class="n">.sum()</span></pre>
+</dt>
+<dd>This is a combination of $$\sum_{i \mathop =1}^m and \sum_{j \mathop =1}^n</dd>
+<dt id=".sqrt()">
+<pre><span class="n">.sqrt()</span></pre>
+</dt>
+<dd>This correlates to this part (which has the above two parts under it as 'result') $$\sqrt{result}$$</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Explanation">Explanation<a class="anchor-link" href="#Explanation"> </a></h3>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"m*n"</span><span class="p">:</span><span class="s2">"This correlates to $$\left|a_{i j}</span><span class="se">\r</span><span class="s2">ight|$$"</span><span class="p">,</span>
-    <span class="s2">".sum()"</span><span class="p">:</span> <span class="s2">"This is a combination of $$\sum_{i \mathop =1}^m and \sum_{j \mathop =1}^n"</span><span class="p">,</span>
-    <span class="s2">".sqrt()"</span><span class="p">:</span> <span class="s2">"This correlates to this part (which has the above two parts under it as 'result') $$\sqrt</span><span class="si">{result}</span><span class="s2">$$"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
