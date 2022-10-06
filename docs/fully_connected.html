@@ -271,17 +271,28 @@ nb_path: "nbs/fully_connected.ipynb"
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_1">
+<li class="active">
+<a data-toggle="tab" href="#code_1">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_1">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_1" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">nh</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">w1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nh</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nh</span><span class="p">)</span>
+<span class="n">w2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">nh</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">nh</span><span class="p">)</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_1" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">nh</span> <span class="o">=</span> <span class="mi">50</span>
 <span class="n">w1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">nh</span><span class="p">)</span><span class="o">/</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
@@ -291,35 +302,40 @@ nb_path: "nbs/fully_connected.ipynb"
 </pre></div>
 </div>
 </div>
+<dl id="content_1">
+<dt id="nh">
+<pre><span class="n">nh</span></pre>
+</dt>
+<dd>The size of our fully-connected hidden layer (nodes)</dd>
+<dt id="w1">
+<pre><span class="n">w1</span></pre>
+</dt>
+<dd>One weight for our model, the first layer initialized (784,50)</dd>
+<dt id="b1">
+<pre><span class="n">b1</span></pre>
+</dt>
+<dd>The bias for that weight</dd>
+<dt id="w2">
+<pre><span class="n">w2</span></pre>
+</dt>
+<dd>Another weight for our model, the second layer (50,1)</dd>
+<dt id="b2">
+<pre><span class="n">b2</span></pre>
+</dt>
+<dd>The bias for that weight</dd>
+<dt id="torch.randn(a,b)/math.sqrt(a)">
+<pre><span class="n">torch.randn(a,b)/math.sqrt(a)</span></pre>
+</dt>
+<dd>Simplified kaiming init/he init</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"nh"</span><span class="p">:</span><span class="s2">"The size of our fully-connected hidden layer (nodes)"</span><span class="p">,</span>
-    <span class="s2">"w1"</span><span class="p">:</span><span class="s2">"One weight for our model, the first layer initialized (784,50)"</span><span class="p">,</span>
-    <span class="s2">"b1"</span><span class="p">:</span><span class="s2">"The bias for that weight"</span><span class="p">,</span>
-    <span class="s2">"w2"</span><span class="p">:</span><span class="s2">"Another weight for our model, the second layer (50,1)"</span><span class="p">,</span>
-    <span class="s2">"b2"</span><span class="p">:</span><span class="s2">"The bias for that weight"</span><span class="p">,</span>
-    <span class="s2">"torch.randn(a,b)/math.sqrt(a)"</span><span class="p">:</span><span class="s2">"Simplified kaiming init/he init"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -434,46 +450,43 @@ nb_path: "nbs/fully_connected.ipynb"
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_2">
+<li class="active">
+<a data-toggle="tab" href="#code_2">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_2">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_2" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span> <span class="k">return</span> <span class="n">inp</span><span class="o">.</span><span class="n">clamp_min</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_2" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">relu</span><span class="p">(</span><span class="n">inp</span><span class="p">):</span> <span class="k">return</span> <span class="n">inp</span><span class="o">.</span><span class="n">clamp_min</span><span class="p">(</span><span class="mf">0.</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_2">
+<dt id=".clamp_min">
+<pre><span class="n">.clamp_min</span></pre>
+</dt>
+<dd>A ReLU activation will turn all negatives into zero</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">".clamp_min"</span><span class="p">:</span><span class="s2">"A ReLU activation will turn all negatives into zero"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -897,46 +910,43 @@ $$s t d=\sqrt{\frac{2}{\left(1+a^2\right) \times \text { fan_in }}}$$
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_3">
+<li class="active">
+<a data-toggle="tab" href="#code_3">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_3">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_3" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">targ</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_3" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mse</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span> <span class="k">return</span> <span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">targ</span><span class="p">)</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_3">
+<dt id=".squeeze()">
+<pre><span class="n">.squeeze()</span></pre>
+</dt>
+<dd>Opposite of unsqueeze, removes a dimension. We use it to remove the trailing <code>[1]</code></dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">".squeeze()"</span><span class="p">:</span><span class="s2">"Opposite of unsqueeze, removes a dimension. We use it to remove the trailing `[1]`"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
@@ -1055,17 +1065,26 @@ $$s t d=\sqrt{\frac{2}{\left(1+a^2\right) \times \text { fan_in }}}$$
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_4">
+<li class="active">
+<a data-toggle="tab" href="#code_4">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_4">Code + Explanation</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_4" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mse_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
+    <span class="c1"># grad of loss with respect to output of previous layer</span>
+    <span class="n">inp</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="mf">2.</span> <span class="o">*</span> <span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="o">-</span> <span class="n">targ</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">inp</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explanation_4" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mse_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
     <span class="c1"># grad of loss with respect to output of previous layer</span>
@@ -1073,44 +1092,46 @@ $$s t d=\sqrt{\frac{2}{\left(1+a^2\right) \times \text { fan_in }}}$$
 </pre></div>
 </div>
 </div>
+<dl id="content_4">
+<dt id="inp.g">
+<pre><span class="n">inp.g</span></pre>
+</dt>
+<dd>Gradients need to be attached to the inputs, so it can be passed across all of the functions and utilized as the output of the previous layer is the input for the current layer</dd>
+<dt id="2 * (inp - targ)/len(inp)">
+<pre><span class="n">2 * (inp - targ)/len(inp)</span></pre>
+</dt>
+<dd>This is the derivitive of (inp-targ)^2/len(inp)</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_5">
+<li class="active">
+<a data-toggle="tab" href="#code_5">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_5">Code + Explanation</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_5" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"inp.g"</span><span class="p">:</span> <span class="s2">"Gradients need to be attached to the inputs, so it can be passed across all of the functions and utilized as the output of the previous layer is the input for the current layer"</span><span class="p">,</span>
-    <span class="s2">"2 * (inp - targ)/len(inp)"</span><span class="p">:</span> <span class="s2">"This is the derivitive of (inp-targ)^2/len(inp)"</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">relu_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
+    <span class="c1"># grad of relu with respect to input activations</span>
+    <span class="n">inp</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">inp</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">float</span><span class="p">()</span> <span class="o">*</span> <span class="n">out</span><span class="o">.</span><span class="n">g</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explanation_5" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">relu_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">):</span>
     <span class="c1"># grad of relu with respect to input activations</span>
@@ -1118,44 +1139,48 @@ $$s t d=\sqrt{\frac{2}{\left(1+a^2\right) \times \text { fan_in }}}$$
 </pre></div>
 </div>
 </div>
+<dl id="content_5">
+<dt id="(inp0).float() * out.g">
+<pre><span class="n">(inp0).float() * out.g</span></pre>
+</dt>
+<dd>The inp0 is familiar, but given *respect* we need to multiply it by the previous layer's gradients</dd>
+<dt id="inp0">
+<pre><span class="n">inp0</span></pre>
+</dt>
+<dd>Given that anything negative after a ReLU is set to 0, it has no slope and thus a derivitive of 0. We take everything above 0 as a result</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_6">
+<li class="active">
+<a data-toggle="tab" href="#code_6">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_6">Code + Explanation</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_6" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"(inp&gt;0).float() * out.g"</span><span class="p">:</span> <span class="s2">"The inp&gt;0 is familiar, but given *respect* we need to multiply it by the previous layer's gradients"</span><span class="p">,</span>
-    <span class="s2">"inp&gt;0"</span><span class="p">:</span><span class="s2">"Given that anything negative after a ReLU is set to 0, it has no slope and thus a derivitive of 0. We take everything above 0 as a result"</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lin_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+    <span class="c1"># grad of matmul with respect to input</span>
+    <span class="n">inp</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">g</span> <span class="o">@</span> <span class="n">w</span><span class="o">.</span><span class="n">t</span><span class="p">()</span> <span class="c1"># transpose</span>
+    <span class="n">w</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="p">(</span><span class="n">inp</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">out</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">g</span> <span class="o">=</span> <span class="n">out</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explanation_6" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">lin_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="c1"># grad of matmul with respect to input</span>
@@ -1165,43 +1190,52 @@ $$s t d=\sqrt{\frac{2}{\left(1+a^2\right) \times \text { fan_in }}}$$
 </pre></div>
 </div>
 </div>
+<dl id="content_6">
+<dt id="out.g @ w.t()">
+<pre><span class="n">out.g @ w.t()</span></pre>
+</dt>
+<dd>The gradient of a matrix product is the product of the matrix transpose</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_7">
+<li class="active">
+<a data-toggle="tab" href="#code_7">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explanation_7">Code + Explanation</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_7" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"out.g @ w.t()"</span><span class="p">:</span> <span class="s2">"The gradient of a matrix product is the product of the matrix transpose"</span><span class="p">,</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">forward_and_backward</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
+    <span class="c1"># forward pass:</span>
+    <span class="n">l1</span> <span class="o">=</span> <span class="n">inp</span> <span class="o">@</span> <span class="n">w1</span> <span class="o">+</span> <span class="n">b1</span>
+    <span class="n">l2</span> <span class="o">=</span> <span class="n">relu_v2</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="n">l2</span> <span class="o">@</span> <span class="n">w2</span> <span class="o">+</span> <span class="n">b2</span>
+    <span class="c1"># We don't actually need the loss in backward</span>
+    <span class="n">loss</span> <span class="o">=</span> <span class="n">mse</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">targ</span><span class="p">)</span>
+    
+    <span class="c1"># backward pass:</span>
+    <span class="n">mse_grad</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">targ</span><span class="p">)</span>
+    <span class="n">lin_grad</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span> <span class="n">out</span><span class="p">,</span> <span class="n">w2</span><span class="p">,</span> <span class="n">b2</span><span class="p">)</span>
+    <span class="n">relu_grad</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">)</span>
+    <span class="n">lin_grad</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">l1</span><span class="p">,</span> <span class="n">w1</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explanation_7" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">forward_and_backward</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">targ</span><span class="p">):</span>
     <span class="c1"># forward pass:</span>
@@ -1219,31 +1253,28 @@ $$s t d=\sqrt{\frac{2}{\left(1+a^2\right) \times \text { fan_in }}}$$
 </pre></div>
 </div>
 </div>
+<dl id="content_7">
+<dt id="l1 = inp @ w1 + b1
+lin_grad(inp, l1, w1, b1)">
+<pre><span class="n">l1 = inp @ w1 + b1
+lin_grad(inp, l1, w1, b1)</span></pre>
+</dt>
+<dd>The inputs to the gradients is the original input, the output, and the rest of the options passed originally</dd>
+<dt id="l2 = relu_v2(l1)
+relu_grad(l1, l2)">
+<pre><span class="n">l2 = relu_v2(l1)
+relu_grad(l1, l2)</span></pre>
+</dt>
+<dd>This pattern continues until we start and end on the original linear layer, traveling through the model and loss function twice</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"l1 = inp @ w1 + b1</span><span class="se">\n</span><span class="s2">lin_grad(inp, l1, w1, b1)"</span><span class="p">:</span> <span class="s2">"The inputs to the gradients is the original input, the output, and the rest of the options passed originally"</span><span class="p">,</span>
-    <span class="s2">"l2 = relu_v2(l1)</span><span class="se">\n</span><span class="s2">relu_grad(l1, l2)"</span><span class="p">:</span><span class="s2">"This pattern continues until we start and end on the original linear layer, traveling through the model and loss function twice"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
