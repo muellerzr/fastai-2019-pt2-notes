@@ -10,7 +10,12 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Impractical Deep Learning for Coders Lesson 1, The forward and backward
+        passes (part 2)
+      url: fully_connected.html
+    - output: web,pdf
       title: Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication
+        (part 1)
       url: matmul.html
     - output: web,pdf
       title: Insert title here

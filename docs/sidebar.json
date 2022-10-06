@@ -1,7 +1,8 @@
 {
   "notes": {
     "Overview": "/",
-    "Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication": "matmul.html",
+    "Impractical Deep Learning for Coders Lesson 1, The forward and backward passes (part 2)": "fully_connected.html",
+    "Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication (part 1)": "matmul.html",
     "Insert title here": "template.html"
   }
 }

@@ -1,6 +1,6 @@
 ---
 
-title: Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication
+title: Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication (part 1)
 
 
 keywords: fastai
@@ -87,6 +87,12 @@ nb_path: "nbs/matmul.ipynb"
 </div>
 </div>
 </div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+</div>
+    {% endraw %}
+
 <ul class="nav nav-tabs" id="profileTabs_0">
 <li class="active">
 <a data-toggle="tab" href="#code_0">Code</a>
@@ -2201,6 +2207,227 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 <pre>tensor([[False,  True,  True],
         [False, False,  True],
         [False, False, False]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Einstein-Summation">Einstein Summation<a class="anchor-link" href="#Einstein-Summation"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Recall the inner most part of the for loops earlier:</p>
+<div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+<p>And when we removed this, it looked like so:</p>
+<div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[:,</span><span class="n">j</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can rewrite this in Einstein Summation using the following steps:</p>
+<ol>
+<li>Get rid of the names of everything and the operators</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="o">+=</span> <span class="n">i</span><span class="p">,</span><span class="n">k</span> <span class="n">k</span><span class="p">,</span><span class="n">j</span>
+</pre></div>
+<ol start="2">
+<li>Move <code>i,j</code> to the end and make an arrow point at it:</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">i</span><span class="p">,</span><span class="n">k</span> <span class="n">k</span><span class="p">,</span><span class="n">j</span> <span class="o">-&gt;</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span>
+</pre></div>
+<ol start="3">
+<li>Get rid of the commas:</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">ik</span> <span class="n">kj</span> <span class="o">-&gt;</span> <span class="n">ij</span>
+</pre></div>
+<ol start="4">
+<li>Replace spaces with commas:</li>
+</ol>
+<div class="highlight"><pre><span></span><span class="n">ik</span><span class="p">,</span><span class="n">kj</span><span class="o">-&gt;</span><span class="n">ij</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Code">Code<a class="anchor-link" href="#Code"> </a></h4>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span> <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">einsum</span><span class="p">(</span><span class="s1">'ik,kj-&gt;ij'</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h4>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
+    <span class="s2">"-&gt;"</span><span class="p">:</span> <span class="s2">"To the left of the arrow is the input, to the right of the arrow is the output"</span><span class="p">,</span>
+    <span class="s2">"ik,kj"</span><span class="p">:</span> <span class="s2">"Inputs are delimited by comma, so there are two in this case"</span><span class="p">,</span>
+    <span class="s2">"ik"</span><span class="p">:</span><span class="s2">"Rank is denoted by the number of letters there are. `ik` and `kj` are both rank 2"</span><span class="p">,</span>
+    <span class="s2">"kj"</span><span class="p">:</span><span class="s2">"These inputs are read (shape wise) as `k` by `j` or `i` by `k`"</span><span class="p">,</span>
+    <span class="s2">"k"</span><span class="p">:</span><span class="s2">"When a letter is repeated across inputs, it is assumed to be a dot product along that dimension"</span><span class="p">,</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 _=matmul(m1,m2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>101 µs ± 42.7 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="pytorch-op">pytorch op<a class="anchor-link" href="#pytorch-op"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we have now explored matmul to it's fullest extent, we can utilize pytorch's operator directly for matrix multiplication:</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">timeit</span> -n 10 t2 = m1.matmul(m2)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The slowest run took 19.75 times longer than the fastest. This could mean that an intermediate result is being cached.
+13.1 µs ± 22.9 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The matmul is pushed to a BLAS (basic linear algebra subprogram) cuBLAS for nvidia, ex. This is what the M1 has for example and how they entered the space.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>matmul is so common and useful that it has it's own operator, <code>@</code>:</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">t2</span> <span class="o">=</span> <span class="n">m1</span><span class="nd">@m2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">test_close</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">t2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is the exact same speed as <code>m1.matmul(m2)</code></p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nbdev.export</span> <span class="kn">import</span> <span class="n">notebook2script</span>
+<span class="n">notebook2script</span><span class="p">(</span><span class="s2">"matmul.ipynb"</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Converted matmul.ipynb.
+</pre>
 </div>
 </div>
 </div>
