@@ -4,6 +4,18 @@
 #################################################
 # Instead edit ../../sidebar.json
 entries:
-- folders: []
+- folders:
+  - folderitems:
+    - output: web,pdf
+      title: Overview
+      url: /
+    - output: web,pdf
+      title: Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication
+      url: core.html
+    - output: web,pdf
+      title: Insert title here
+      url: template.html
+    output: web
+    title: notes
   output: web
   title: Sidebar
