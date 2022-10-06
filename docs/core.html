@@ -81,6 +81,12 @@ nb_path: "nbs/core.ipynb"
 </div>
     {% endraw %}
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First we need to download the dataset we are using, which will be MNIST</p>
+</div>
+</div>
+</div>
 <ul class="nav nav-tabs" id="profileTabs_0">
 <li class="active">
 <a data-toggle="tab" href="#code_0">Code</a>
@@ -207,7 +213,7 @@ nb_path: "nbs/core.ipynb"
 <dt id="n,c = x_train.shape">
 <pre><span class="n">n,c = x_train.shape</span></pre>
 </dt>
-<dd><code>n</code> = the number of rows in the training set, <code>c</code> = the nuber of columns in the training set</dd>
+<dd><code>n</code> = the number of rows in the training set, <code>c</code> = the number of columns in the training set</dd>
 </dl>
 </div>
 </div>
@@ -470,17 +476,33 @@ nb_path: "nbs/core.ipynb"
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
-</div>
-</div>
-</div>
+<ul class="nav nav-tabs" id="profileTabs_6">
+<li class="active">
+<a data-toggle="tab" href="#code_6">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explaination_6">Code + Explaination</a>
+</li>
+</ul>
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+<div class="tab-content">
+<div class="tab-pane active" id="code_6" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+    <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">br</span><span class="p">,</span><span class="n">bc</span> <span class="o">=</span> <span class="n">b</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">assert</span> <span class="n">ac</span><span class="o">==</span><span class="n">br</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">ar</span><span class="p">,</span><span class="n">bc</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ar</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bc</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ac</span><span class="p">):</span> <span class="c1"># or br</span>
+                <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explaination_6" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
     <span class="n">ar</span><span class="p">,</span><span class="n">ac</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">shape</span>
@@ -495,80 +517,89 @@ nb_path: "nbs/core.ipynb"
 </pre></div>
 </div>
 </div>
+<dl id="content_6">
+<dt id="(a,b)">
+<pre><span class="n">(a,b)</span></pre>
+</dt>
+<dd><code>a</code> and <code>b</code> are two matricies which should be multiplied</dd>
+<dt id="assert ac==br">
+<pre><span class="n">assert ac==br</span></pre>
+</dt>
+<dd>Matrix multiplication cannot occur unless the number of columns in <code>a</code> aligns with the number of rows in <code>b</code></dd>
+<dt id="c">
+<pre><span class="n">c</span></pre>
+</dt>
+<dd><code>c</code> is the resulting matrix, which has a shape of <code>a</code>'s rows and <code>b</code>'s columns</dd>
+<dt id="for i in range(ar):">
+<pre><span class="n">for i in range(ar):</span></pre>
+</dt>
+<dd>Loop of matrix B as a whole scrolling down matrix A *sideways*, imagine going row by row like a curtain coming down slowly</dd>
+<dt id="for j in range(bc):">
+<pre><span class="n">for j in range(bc):</span></pre>
+</dt>
+<dd>Loop of each column in matrix B at each row in matrix A</dd>
+<dt id="for k in range(ac):">
+<pre><span class="n">for k in range(ac):</span></pre>
+</dt>
+<dd>The actual loop of multiplying and adding (matrix multiplication)</dd>
+<dt id="c[i,j] += a[i,k] * b[k,j]">
+<pre><span class="n">c[i,j] += a[i,k] * b[k,j]</span></pre>
+</dt>
+<dd>The actual multiplication being performed</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+
+    {% endraw %}
+
+<ul class="nav nav-tabs" id="profileTabs_7">
+<li class="active">
+<a data-toggle="tab" href="#code_7">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explaination_7">Code + Explaination</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_7" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"(a,b)"</span><span class="p">:</span> <span class="s2">"`a` and `b` are two matricies which should be multiplied"</span><span class="p">,</span>
-    <span class="s2">"assert ac==br"</span><span class="p">:</span> <span class="s2">"Matrix multiplication cannot occur unless the number of columns in `a` aligns with the number of rows in `b`"</span><span class="p">,</span>
-    <span class="s2">"c"</span><span class="p">:</span><span class="s2">"`c` is the resulting matrix, which has a shape of `a`'s rows and `b`'s columns"</span><span class="p">,</span>
-    <span class="s2">"for i in range(ar):"</span><span class="p">:</span> <span class="s2">"Loop of matrix B as a whole scrolling down matrix A *sideways*, imagine going row by row like a curtain coming down slowly"</span><span class="p">,</span>
-    <span class="s2">"for j in range(bc):"</span><span class="p">:</span> <span class="s2">"Loop of each column in matrix B at each row in matrix A"</span><span class="p">,</span>
-    <span class="s2">"for k in range(ac):"</span><span class="p">:</span> <span class="s2">"The actual loop of multiplying and adding (matrix multiplication)"</span><span class="p">,</span>
-    <span class="s2">"c[i,j] += a[i,k] * b[k,j]"</span><span class="p">:</span> <span class="s2">"The actual multiplication being performed"</span>
-<span class="p">};</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">x_valid</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">m2</span> <span class="o">=</span> <span class="n">weights</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Code">Code<a class="anchor-link" href="#Code"> </a></h3>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
+</div></div>
+<div class="tab-pane" id="code_explaination_7" role="tabpanel"><div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">m1</span> <span class="o">=</span> <span class="n">x_valid</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
 <span class="n">m2</span> <span class="o">=</span> <span class="n">weights</span>
 </pre></div>
 </div>
 </div>
+<dl id="content_7">
+<dt id="m1">
+<pre><span class="n">m1</span></pre>
+</dt>
+<dd>Five rows of the validation set</dd>
+<dt id="m2">
+<pre><span class="n">m2</span></pre>
+</dt>
+<dd>Weight matrix</dd>
+</dl>
 </div>
 </div>
     {% endraw %}
 
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Explaination">Explaination<a class="anchor-link" href="#Explaination"> </a></h3>
-</div>
-</div>
-</div>
+
     {% raw %}
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"m1"</span><span class="p">:</span> <span class="s2">"Five rows of the validation set"</span><span class="p">,</span>
-    <span class="s2">"m2"</span><span class="p">:</span> <span class="s2">"Weight matrix"</span>
-<span class="p">};</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
+
     {% endraw %}
 
     {% raw %}
@@ -642,4 +673,211 @@ Wall time: 391 ms
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">x_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>50000</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is quite slow. To do a single epoch it would take ~20,000 seconds on the computer I'm using to take notes. (50,000 on Jeremy's).</p>
+<p>This is also why we don't write things in Python. It's <strong>unreasonably slow</strong>.</p>
+<p>New goal, can we speed this up 50,000 times</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Elementwise-operations">Elementwise operations<a class="anchor-link" href="#Elementwise-operations"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To speed things up, start with the innermost loop and make things just a little bit faster</p>
+<blockquote>
+<p>The way to make Python faster is to remove python - Jeremy Howard</p>
+</blockquote>
+<p>EWO's include (+,-,*,/,&gt;,&lt;,==)</p>
+<p>Example with two tensors:</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">10.</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">2.</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="n">a</span><span class="p">,</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>(tensor([10.,  6., -4.]), tensor([2., 8., 7.]))</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">+</span><span class="n">b</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([12., 14.,  3.])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We performed <code>c[0] = a[0]+b[0]</code>, <code>c[1] = a[1] + b[1]</code>, ...</p>
+</div>
+</div>
+</div>
+<ul class="nav nav-tabs" id="profileTabs_8">
+<li class="active">
+<a data-toggle="tab" href="#code_8">Code</a>
+</li>
+<li>
+<a data-toggle="tab" href="#code_explaination_8">Code + Explaination</a>
+</li>
+</ul>
+    {% raw %}
+    
+<div class="tab-content">
+<div class="tab-pane active" id="code_8" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+<div class="tab-pane" id="code_explaination_8" role="tabpanel"><div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">float</span><span class="p">()</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<dl id="content_8">
+<dt id="c = (a  b)">
+<pre><span class="n">c = (a  b)</span></pre>
+</dt>
+<dd>We performed <code>c[0] = a[0] b[0]</code>, <code>c[1] = a[1]  b[1]</code>, ...</dd>
+<dt id="c">
+<pre><span class="n">c</span></pre>
+</dt>
+<dd>This becomes a boolean array of <code>[False, True, True]</code>, having an average of 2/3's</dd>
+</dl>
+</div>
+</div>
+    {% endraw %}
+
+
+    {% raw %}
+    
+
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor(0.6667)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Also known as what percentage of a is less than b. We could also perform the same on a rank 2 tensor (a tensor that has 2 dimensions):</p>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="inner_cell">
+<div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">tensor</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">]]);</span> <span class="n">m</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>tensor([[1., 2., 3.],
+        [4., 5., 6.],
+        [7., 8., 9.]])</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>{% include note.html content='We only convert the first number to a float as PyTorch will realize this and cast the rest as a float' %}</p>
+</div>
+</div>
+</div>
 </div>
