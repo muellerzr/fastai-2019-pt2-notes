@@ -1,7 +1,7 @@
 repository: muellerzr/fastai-2019-pt2-notes
 output: web
-topnav_title: notes
-site_title: notes
+topnav_title: fastai-2019-pt2-notes
+site_title: fastai-2019-pt2-notes
 company_name: Zachary Mueller
 description: Notes for fastai 2019 pt 2
 # Set to false to disable KaTeX math
