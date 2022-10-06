@@ -891,7 +891,7 @@ Wall time: 421 ms
 <p>Frobenius norm:</p>
 <p><em>I have no idea what this is/remember what this is</em></p>
 <p>{% raw %}
-$$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
+$$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\\right|^2\\right)^{1 / 2}$$
 {% endraw %}</p>
 </div>
 </div>
@@ -925,23 +925,23 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 <dt id="i">
 <pre><span class="n">i</span></pre>
 </dt>
-<dd>This is the first for loop, and goes from 1 -\ n</dd>
+<dd>$$	ext{This is the first for loop, and goes from 1 }\rightarrow	ext{ n}$$</dd>
 <dt id="j">
 <pre><span class="n">j</span></pre>
 </dt>
-<dd>This is the second for loop, and goes from 1 -\ n as well</dd>
+<dd>$$	ext{This is the second for loop, and goes from 1 }\rightarrow	ext{ n as well}$$</dd>
 <dt id="m*n">
 <pre><span class="n">m*n</span></pre>
 </dt>
-<dd>This correlates to $$\left|a_{i j}\right|$$</dd>
+<dd>$$	ext{This correlates to }\left|a_{i j}\right|$$</dd>
 <dt id=".sum()">
 <pre><span class="n">.sum()</span></pre>
 </dt>
-<dd>This aligns with $$\sum_{i, j=1}^n$$, which is equivalent to a product combination of $$\sum_{i \mathop =1}^m and \sum_{j \mathop =1}^n$$</dd>
+<dd>$$	ext{This aligns with }\sum_{i, j=1}^n	ext{, which is equivalent to a product combination of }\sum_{i \mathop =1}^m and \sum_{j \mathop =1}^n$$</dd>
 <dt id=".sqrt()">
 <pre><span class="n">.sqrt()</span></pre>
 </dt>
-<dd>This correlates to the 1/2 power, simplified as 'result' $$\left(result\right)^{1 / 2}$$</dd>
+<dd>$$	ext{This correlates to the 1/2 power, simplified as 'result' }\left(result\right)^{1 / 2}$$</dd>
 </dl>
 </div>
 </div>
@@ -1019,7 +1019,7 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 <dt id="c[i,j] = (a[i,:] * b[:,j]).sum()">
 <pre><span class="n">c[i,j] = (a[i,:] * b[:,j]).sum()</span></pre>
 </dt>
-<dd>We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i -\ end! (Or the entirety of that axis)</dd>
+<dd>$$	ext{We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i }\rightarrow	ext{ end! (Or the entirety of that axis)}$$</dd>
 <dt id="a[i,:]">
 <pre><span class="n">a[i,:]</span></pre>
 </dt>
