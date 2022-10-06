@@ -919,11 +919,11 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 <dt id="i">
 <pre><span class="n">i</span></pre>
 </dt>
-<dd>This is the first for loop, and goes from 1 - n</dd>
+<dd>This is the first for loop, and goes from 1 -\ n</dd>
 <dt id="j">
 <pre><span class="n">j</span></pre>
 </dt>
-<dd>This is the second for loop, and goes from 1 - n as well</dd>
+<dd>This is the second for loop, and goes from 1 -\ n as well</dd>
 <dt id="m*n">
 <pre><span class="n">m*n</span></pre>
 </dt>
@@ -1010,7 +1010,7 @@ $$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
 <div class="inner_cell">
 <div class="input_area">
 <div class="highlight hl-ipython3"><pre><span></span><span class="p">{</span>
-    <span class="s2">"c[i,j] = (a[i,:] * b[:,j]).sum()"</span><span class="p">:</span> <span class="s2">"We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i -&gt; end! (Or the entirety of that axis)"</span><span class="p">,</span>
+    <span class="s2">"c[i,j] = (a[i,:] * b[:,j]).sum()"</span><span class="p">:</span> <span class="s2">"We replace the entire innermost for loop with this, and directly perform the matrix operation. Remember that : selects everything from i -\&gt; end! (Or the entirety of that axis)"</span><span class="p">,</span>
     <span class="s2">"a[i,:]"</span><span class="p">:</span> <span class="s2">"We select all of row `i`"</span><span class="p">,</span>
     <span class="s2">"b[:,j]"</span><span class="p">:</span> <span class="s2">"And we select all of column `j`."</span>
 <span class="p">};</span>
