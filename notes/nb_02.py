@@ -9,6 +9,7 @@ import pickle, gzip
 from torch import tensor
 import torch, math
 import matplotlib.pyplot as plt
+from fastcore.test import test_close
 
 def get_data():
     fd = FastDownload(base="~/.fastai")
