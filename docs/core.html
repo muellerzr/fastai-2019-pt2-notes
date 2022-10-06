@@ -884,36 +884,9 @@ Wall time: 391 ms
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Frobenius norm:</p>
 <p><em>I have no idea what this is/remember what this is</em></p>
-<img alt="drawing" src="https://mathworld.wolfram.com/images/equations/FrobeniusNorm/NumberedEquation1.svg" style="max-width: 400px" width="400"/>
-</div>
-</div>
-</div>
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="inner_cell">
-<div class="input_area">
-<div class="highlight hl-ipython3"><pre><span></span><span class="p">(</span><span class="n">m</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">sqrt</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>tensor(16.8819)</pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-    {% endraw %}
-
-<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Here is where I'd love to be able to draw and have each part layered out, so instead we'll experiment with my annotation a bit:</p>
+<p>{% raw %}
+$$\|A\|_F=\left(\sum_{i, j=1}^n\left|a_{i j}\right|^2\right)^{1 / 2}$$
+{% endraw %}</p>
 </div>
 </div>
 </div>
@@ -950,11 +923,11 @@ Wall time: 391 ms
 <dt id=".sum()">
 <pre><span class="n">.sum()</span></pre>
 </dt>
-<dd>This is a product combination of $$\sum_{i \mathop =1}^m and \sum_{j \mathop =1}^n$$</dd>
+<dd>This aligns with $$\sum_{i, j=1}^n$$, which is equivalent to a product combination of $$\sum_{i \mathop =1}^m and \sum_{j \mathop =1}^n$$</dd>
 <dt id=".sqrt()">
 <pre><span class="n">.sqrt()</span></pre>
 </dt>
-<dd>This correlates to the square root of the above two, simplified as 'result' $$\sqrt{result}$$</dd>
+<dd>This correlates to the 1/2 power, simplified as 'result' $$\left(resultight)^{1 / 2}$$</dd>
 </dl>
 </div>
 </div>
