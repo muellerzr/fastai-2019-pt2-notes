@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+
+
+  
+  
+  <url>
+    <loc>/fully_connected.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/matmul.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/minibatch_training.html</loc>
+  </url>
+  
+  
+  
+  
+  
+  <url>
+    <loc>/template.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/why_good_init.html</loc>
+  </url>
+  
+  
+  
+  <url>
+    <loc>/why_sqrt5.html</loc>
+  </url>
+  
+  
+</urlset>
