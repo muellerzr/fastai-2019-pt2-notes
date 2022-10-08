@@ -1,11 +1,16 @@
 {
-  "coursenotes": {
+  "Impractical Deep Learning for Coders": {
     "Overview": "/",
-    "Impractical Deep Learning for Coders Lesson 1, The forward and backward passes (part 2)": "fully_connected.html",
-    "Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication (part 1)": "matmul.html",
-    "Impractical Deep Learning for Coders Lesson 2, Minibatch Training": "minibatch_training.html",
-    "Insert title here": "template.html",
-    "Why does the initialization matter?": "why_good_init.html",
-    "Why do we use sqrt5?": "why_sqrt5.html"
+    "":{
+      "Lesson 1": {
+        "Matrix Multiplication": "matmul.html",
+        "The forward and backward passes": "fully_connected.html"
+      },
+      "Lesson 2": {
+        "Why do we use sqrt5": "why_sqrt5.html",
+        "Why does initialization matter?": "why_good_init.html",
+        "Minibatch Training": "minibatch_training.html"
+      }
+    }    
   }
 }

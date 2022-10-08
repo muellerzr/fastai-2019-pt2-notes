@@ -9,27 +9,29 @@ entries:
     - output: web,pdf
       title: Overview
       url: /
-    - output: web,pdf
-      title: Impractical Deep Learning for Coders Lesson 1, The forward and backward
-        passes (part 2)
-      url: fully_connected.html
-    - output: web,pdf
-      title: Impractical Deep Learning for Coders Lesson 1, Matrix Multiplication
-        (part 1)
-      url: matmul.html
-    - output: web,pdf
-      title: Impractical Deep Learning for Coders Lesson 2, Minibatch Training
-      url: minibatch_training.html
-    - output: web,pdf
-      title: Insert title here
-      url: template.html
-    - output: web,pdf
-      title: Why does the initialization matter?
-      url: why_good_init.html
-    - output: web,pdf
-      title: Why do we use sqrt5?
-      url: why_sqrt5.html
+      subfolders:
+      - output: web
+        subfolderitems:
+        - output: web,pdf
+          title: Matrix Multiplication
+          url: matmul.html
+        - output: web,pdf
+          title: The forward and backward passes
+          url: fully_connected.html
+        title: Lesson 1
+      - output: web
+        subfolderitems:
+        - output: web,pdf
+          title: Why do we use sqrt5
+          url: why_sqrt5.html
+        - output: web,pdf
+          title: Why does initialization matter?
+          url: why_good_init.html
+        - output: web,pdf
+          title: Minibatch Training
+          url: minibatch_training.html
+        title: Lesson 2
     output: web
-    title: coursenotes
+    title: Impractical Deep Learning for Coders
   output: web
   title: Sidebar
