@@ -18,9 +18,18 @@ entries:
         (part 1)
       url: matmul.html
     - output: web,pdf
+      title: Impractical Deep Learning for Coders Lesson 2, Minibatch Training
+      url: minibatch_training.html
+    - output: web,pdf
       title: Insert title here
       url: template.html
+    - output: web,pdf
+      title: Why does the initialization matter?
+      url: why_good_init.html
+    - output: web,pdf
+      title: Why do we use sqrt5?
+      url: why_sqrt5.html
     output: web
-    title: notes
+    title: coursenotes
   output: web
   title: Sidebar
