@@ -1,0 +1,9 @@
+project:
+  output-dir: _docs
+
+website:
+  title: "fastai pt 2 notes"
+  site-url: "https://muellerzr.github.io/fastai-2019-pt2-notes"
+  description: "A collection of fastai pt 2 notes"
+  repo-branch: main
+  repo-url: "https://github.com/muellerzr/fastai-2019-pt2-notes/"

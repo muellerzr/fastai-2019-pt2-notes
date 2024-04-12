@@ -1,0 +1,88 @@
+.cell {
+    margin-bottom: 1rem;
+  }
+  
+  .cell > .sourceCode {
+    margin-bottom: 0;
+  }
+  
+  .cell-output > pre {
+    margin-bottom: 0;
+  }
+  
+  .cell-output > pre, .cell-output > .sourceCode > pre, .cell-output-stdout > pre {
+    margin-left: 0.8rem;
+    margin-top: 0;
+    background: none;
+    border-left: 2px solid lightsalmon;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  
+  .cell-output > .sourceCode {
+    border: none;
+  }
+  
+  .cell-output > .sourceCode {
+    background: none;
+    margin-top: 0;
+  }
+  
+  div.description {
+    padding-left: 2px;
+    padding-top: 5px;
+    font-style: italic;
+    font-size: 135%;
+    opacity: 70%;
+  }
+  
+  div.sourceCode {
+      padding-top: 0px;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-radius: 0px !important;
+      box-shadow: 0px 0px;
+  }
+  
+  a, u{
+    text-decoration: none !important;
+  }
+  
+  .hide {
+      display: none;
+  }
+  
+  .explaination:hover + .hide {
+      display: block;
+  }
+  
+  .nogap {
+      padding: 0px;
+      border-radius: 0px !important;
+      outline: 0px 0px;
+      margin-bottom: 0px !important;
+  }
+  
+  .code-with-filename .code-with-filename-file {
+      margin: 0px;
+  }
+  div.sourceCode {
+      border: 0px;
+      margin: 0px;
+  }
+  
+  pre > code.sourceCode {
+      white-space: pre;
+      text-decoration: none;
+  }
+  
+  .nogap > div.sourceCode > pre.sourceCode {
+  /*     display: inline-block; */
+      /*line-height: 0.5; */
+  /*     font-size: 20px; */
+      line-height: 0px;
+      padding-bottom: 0px;
+      padding-top: 0px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+  }
