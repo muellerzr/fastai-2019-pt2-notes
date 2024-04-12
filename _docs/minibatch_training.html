@@ -192,11 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#setup-data" id="toc-setup-data" class="nav-link" data-scroll-target="#setup-data">Setup Data</a></li>
   </ul></li>
-  <li><a href="#a-loss-function-cross-entropy-loss" id="toc-a-loss-function-cross-entropy-loss" class="nav-link" data-scroll-target="#a-loss-function-cross-entropy-loss">A loss function: Cross Entropy Loss</a>
-  <ul>
-  <li><a href="#code" id="toc-code" class="nav-link" data-scroll-target="#code">Code</a></li>
-  <li><a href="#explanation" id="toc-explanation" class="nav-link" data-scroll-target="#explanation">Explanation</a></li>
-  </ul></li>
+  <li><a href="#a-loss-function-cross-entropy-loss" id="toc-a-loss-function-cross-entropy-loss" class="nav-link" data-scroll-target="#a-loss-function-cross-entropy-loss">A loss function: Cross Entropy Loss</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/muellerzr/fastai-2019-pt2-notes/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -277,57 +273,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a-loss-function-cross-entropy-loss" class="level2">
 <h2 class="anchored" data-anchor-id="a-loss-function-cross-entropy-loss">A loss function: Cross Entropy Loss</h2>
-<section id="code" class="level4">
-<h4 class="anchored" data-anchor-id="code">Code</h4>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Code</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Code + Explanation</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div id="b0e75144-11a4-4ef2-881a-8e1138e5c79d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_softmax(x):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x.exp() <span class="op">/</span> </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>            (x.exp().<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>, keepdim<span class="op">=</span><span class="va">True</span>))</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>           ).log()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="explanation" class="level4">
-<h4 class="anchored" data-anchor-id="explanation">Explanation</h4>
-<div id="06b98fa7-00c7-4c81-9b66-faa3fed0d0f6" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"log_softmax"</span>:<span class="st">"Log softmax is simply taking the exponential of x, dividing it by the sum of all the exponentials, and then taking the log of that result"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"log"</span>:<span class="st">"We take the log because negative log likelihood expects a log, not a negative"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div id="b0e75144-11a4-4ef2-881a-8e1138e5c79d" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_softmax(x):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x.exp() <span class="op">/</span> </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>            (x.exp().<span class="bu">sum</span>(<span class="op">-</span><span class="dv">1</span>, keepdim<span class="op">=</span><span class="va">True</span>))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>           ).log()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<hr>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> log_softmax(x):</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="padding-top: 0px;">
+<p>Log softmax is simply taking the exponential of x, dividing it by the sum of all the exponentials, and then taking the log of that result</p>
+</div>
+<hr>
+<div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>           ).log()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="padding-top: 0px;">
+<p>We take the log because negative log likelihood expects a log, not a negative</p>
+</div>
+</div>
+</div>
 </div>
 <div id="0209b9a2-8438-4e7b-aaba-d262502468d6" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>log_preds <span class="op">=</span> log_softmax(pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>log_preds <span class="op">=</span> log_softmax(pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We can then calculate log likelihood, which is equal to:</p>
 <p><code>(classARight * log10(classAProb)) + (classBRight * log10(classBProb))...</code></p>
 <p>For example, assume two classes such as above, with the probabilities being 0.98 and 0.2 respectively. The right answer is 0</p>
 <div id="86ef5122-72b7-451a-8ed4-2d9d0c5b6295" class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>is_cat <span class="op">=</span> <span class="dv">1</span> <span class="co"># One hot encoded label</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>is_dog <span class="op">=</span> <span class="dv">0</span> <span class="co"># OHE label</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> <span class="fl">0.98</span> <span class="co"># Softmaxed predictions</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>log_pred_cat <span class="op">=</span> math.log10(preds) <span class="co"># Take log base 10</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>log_pred_dog <span class="op">=</span> math.log10(<span class="dv">1</span><span class="op">-</span>preds) <span class="co"># Take log base 10</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>nll <span class="op">=</span> <span class="op">-</span>((is_cat <span class="op">*</span> log_pred_cat) <span class="op">+</span> (is_dog <span class="op">*</span> log_pred_dog))<span class="op">;</span> nll <span class="co"># Follow the above, and make it negative</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>is_cat <span class="op">=</span> <span class="dv">1</span> <span class="co"># One hot encoded label</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>is_dog <span class="op">=</span> <span class="dv">0</span> <span class="co"># OHE label</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>preds <span class="op">=</span> <span class="fl">0.98</span> <span class="co"># Softmaxed predictions</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>log_pred_cat <span class="op">=</span> math.log10(preds) <span class="co"># Take log base 10</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>log_pred_dog <span class="op">=</span> math.log10(<span class="dv">1</span><span class="op">-</span>preds) <span class="co"># Take log base 10</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>nll <span class="op">=</span> <span class="op">-</span>((is_cat <span class="op">*</span> log_pred_cat) <span class="op">+</span> (is_dog <span class="op">*</span> log_pred_dog))<span class="op">;</span> nll <span class="co"># Follow the above, and make it negative</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>0.00877392430750515</code></pre>
 </div>
 </div>
 <p>We can make it faster by first finding the location of the 1 (since there is only a single one), then using that index calculate it all</p>
 <div id="be2c7d89-f056-4e32-928c-196e89042bca" class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>y_train[:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>y_train[:<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 <pre><code>tensor([5, 0, 4])</code></pre>
 </div>
 </div>
 <div id="938f5861-615a-4cad-997a-1b88f50ae4d8" class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>log_preds[[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>], [<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">4</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>log_preds[[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>], [<span class="dv">5</span>,<span class="dv">0</span>,<span class="dv">4</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>tensor([-2.4597, -2.3251, -2.1119], grad_fn=&lt;IndexBackward0&gt;)</code></pre>
 </div>
 </div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
