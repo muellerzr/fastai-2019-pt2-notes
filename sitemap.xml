@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://muellerzr.github.io/fastai-2019-pt2-notes/why_good_init.html</loc>
+    <lastmod>2024-04-12T21:44:25.977Z</lastmod>
+  </url>
+  <url>
+    <loc>https://muellerzr.github.io/fastai-2019-pt2-notes/index.html</loc>
+    <lastmod>2024-04-12T21:16:28.984Z</lastmod>
+  </url>
+  <url>
+    <loc>https://muellerzr.github.io/fastai-2019-pt2-notes/minibatch_training.html</loc>
+    <lastmod>2024-04-12T21:44:25.945Z</lastmod>
+  </url>
+  <url>
+    <loc>https://muellerzr.github.io/fastai-2019-pt2-notes/matmul.html</loc>
+    <lastmod>2024-04-12T22:05:52.882Z</lastmod>
+  </url>
+  <url>
+    <loc>https://muellerzr.github.io/fastai-2019-pt2-notes/why_sqrt5.html</loc>
+    <lastmod>2024-04-12T21:44:26.869Z</lastmod>
+  </url>
+  <url>
+    <loc>https://muellerzr.github.io/fastai-2019-pt2-notes/fully_connected.html</loc>
+    <lastmod>2024-04-12T22:22:33.069Z</lastmod>
+  </url>
+</urlset>
