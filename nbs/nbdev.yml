@@ -3,7 +3,7 @@ project:
 
 website:
   title: "Course Notes"
-  site-url: "https://muellerzr.github.io/coursenotes/"
+  site-url: "https://muellerzr.github.io/fastai-2019-pt2-notes/"
   description: "Notes from fastai pt 2 2019"
   repo-branch: main
-  repo-url: "https://github.com/muellerzr/til/"
+  repo-url: "https://github.com/muellerzr/fastai-2019-pt2-notes/"
