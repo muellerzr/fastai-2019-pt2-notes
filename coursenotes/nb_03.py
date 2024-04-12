@@ -9,13 +9,17 @@ import gzip, pickle
 from torch import tensor
 from functools import partial
 import math
+from .nb_01 import MNIST_URL
+from fastdownload import FastDownload
+from .nb_02 import mse
 
-DATA_PATH = Path("../../../course-data")
+DATA_PATH = Path("~/.fastai/data/")
 
 def get_data():
-    path = DATA_PATH/"mnist.pkl.gz"
+    fd = FastDownload(base="~/.fastai")
+    path = fd.download(MNIST_URL)
     with gzip.open(path, 'rb') as f:
-        ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(f, encoding="latin-1")
+        ((x_train, y_train), (x_valid, y_valid), _) = pickle.load(f, encoding='latin-1')
     return map(tensor, (x_train,y_train,x_valid,y_valid))
 
 def normalize(x, mean, std): return (x-mean)/std

@@ -11,6 +11,7 @@ from torch import tensor
 import torch, math
 import matplotlib.pyplot as plt
 from fastcore.test import test_close
+from torch.nn import init
 
 def get_data():
     fd = FastDownload(base="~/.fastai")
