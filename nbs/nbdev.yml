@@ -2,7 +2,7 @@ project:
   output-dir: _docs
 
 website:
-  title: "Course Notes"
+  title: "Impractical Deep Learning for Coders"
   site-url: "https://muellerzr.github.io/fastai-2019-pt2-notes/"
   description: "Notes from fastai pt 2 2019"
   repo-branch: main
