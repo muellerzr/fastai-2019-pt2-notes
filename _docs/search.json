@@ -131,7 +131,7 @@
     "href": "fully_connected.html#loss-function-mse",
     "title": "Lesson 1, The forward and backward passes (part 2)",
     "section": "Loss function: MSE",
-    "text": "Loss function: MSE\n\nmodel(x_valid).shape\n\ntorch.Size([10000, 1])\n\n\n\nCodeCode + Explanation\n\n\n\nsource\n\nmse\n\n mse (output, targ)\n\n\n\n\n\nsource\n\nmse\n\n mse (output, targ)\n\n\n.squeeze()\n\nOpposite of unsqueeze, removes a dimension. We use it to remove the trailing [1]\n\n\n\n\n\n\nNote: better to use -1 or 1 than just to do squeeze()\n\n\ny_train,y_valid = y_train.float(),y_valid.float()\n\n\npreds_a = model(x_train)\npreds_b = model(x_train,False)\n\n\npreds_a.shape\n\ntorch.Size([50000, 1])\n\n\n\nmse(preds_a, y_train)\n\ntensor(28.0614)\n\n\n\nmse(preds_b, y_train)\n\ntensor(27.8693)",
+    "text": "Loss function: MSE\n\nmodel(x_valid).shape\n\ntorch.Size([10000, 1])\n\n\n\ndef mse(output, targ): return (output.squeeze(-1) - targ).pow(2).mean()\n\n\nCodeCode + Explanation\n\n\n\nsource\n\nmse\n\n mse (output, targ)\n\n\n\n\n\nsource\n\nmse\n\n mse (output, targ)\n\n\n.squeeze()\n\nOpposite of unsqueeze, removes a dimension. We use it to remove the trailing [1]\n\n\n\n\n\n\nNote: better to use -1 or 1 than just to do squeeze()\n\n\ny_train,y_valid = y_train.float(),y_valid.float()\n\n\npreds_a = model(x_train)\npreds_b = model(x_train,False)\n\n\npreds_a.shape\n\ntorch.Size([50000, 1])\n\n\n\nmse(preds_a, y_train)\n\ntensor(28.0614)\n\n\n\nmse(preds_b, y_train)\n\ntensor(27.8693)",
     "crumbs": [
       "Lesson 1, The forward and backward passes (part 2)"
     ]
